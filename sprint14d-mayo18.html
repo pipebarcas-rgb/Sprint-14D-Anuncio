@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint 14D — Básquet Puerto Montt</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- META PIXEL — reemplaza XXXXXXXXXX con tu Pixel ID -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1900034004210619');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1900034004210619&ev=PageView&noscript=1"/></noscript>
+
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #141414;
+    --card: #1a1a1a;
+    --orange: #FF6B00;
+    --green: #25D366;
+    --green-hover: #1eba56;
+    --white: #FFFFFF;
+    --gray: #9a9a9a;
+    --light: #e0e0e0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+  }
+
+  /* =================== HERO =================== */
+  .hero {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px 20px 32px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--orange);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 107, 0, 0.12);
+    border: 1px solid rgba(255, 107, 0, 0.3);
+    border-radius: 100px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+
+  .badge::before { content: '🏀'; font-size: 14px; }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(38px, 10vw, 56px);
+    line-height: 0.95;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+    max-width: 420px;
+  }
+
+  .hero h1 span { color: var(--orange); }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--light);
+    line-height: 1.5;
+    margin-bottom: 28px;
+    max-width: 380px;
+  }
+
+  .hero-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .hero-details .tag {
+    background: var(--card);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--light);
+  }
+
+  .hero-details .tag strong { color: var(--white); }
+
+  .cta-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 14px;
+    padding: 18px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    width: 100%;
+    max-width: 380px;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .cta-primary:active {
+    transform: scale(0.98);
+    background: var(--green-hover);
+  }
+
+  .cta-primary svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  .cta-note {
+    font-size: 13px;
+    color: var(--gray);
+    margin-top: 12px;
+    text-align: center;
+    max-width: 380px;
+  }
+
+  /* =================== SECTION 2: WHAT + PRICE =================== */
+  .what {
+    padding: 48px 20px;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .what h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .what-item {
+    background: var(--card);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .what-item .icon { font-size: 24px; margin-bottom: 6px; }
+
+  .what-item .label {
+    font-size: 12px;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .what-item .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .price-box {
+    background: var(--card);
+    border: 2px solid var(--orange);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .price-box .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .price-box .price-note { font-size: 15px; color: var(--gray); }
+
+  .guarantee {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(255, 107, 0, 0.06);
+    border: 1px solid rgba(255, 107, 0, 0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 32px;
+  }
+
+  .guarantee .shield { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+  .guarantee p { font-size: 14px; color: var(--light); line-height: 1.5; }
+  .guarantee strong { color: var(--white); }
+
+  /* =================== SECTION 3: COACH + FINAL CTA =================== */
+  .coach {
+    padding: 48px 20px 60px;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .coach h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+  }
+
+  .coach-card {
+    background: var(--card);
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 28px;
+  }
+
+  .coach-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+
+  .coach-name span { color: var(--orange); }
+
+  .coach-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .coach-tags span {
+    background: rgba(255, 107, 0, 0.1);
+    border: 1px solid rgba(255, 107, 0, 0.25);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 5px 10px;
+    border-radius: 6px;
+  }
+
+  .coach-desc {
+    font-size: 15px;
+    color: var(--light);
+    line-height: 1.6;
+  }
+
+  .final-cta { text-align: center; }
+  .final-cta .cta-primary { margin: 0 auto; }
+  .final-cta .cta-note { margin: 12px auto 0; }
+
+  .urgency {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--orange);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  /* =================== STICKY CTA =================== */
+  .sticky-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid #1e1e1e;
+    padding: 12px 20px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sticky-bar.visible { transform: translateY(0); }
+  .sticky-bar .cta-primary { padding: 14px 24px; font-size: 15px; max-width: 340px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * { animation: fadeUp 0.6s ease both; }
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero > *:nth-child(5) { animation-delay: 0.5s; }
+  .hero > *:nth-child(6) { animation-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<!-- ====== HERO ====== -->
+<section class="hero">
+  <div class="badge">Puerto Montt · 10 cupos</div>
+
+  <h1>Sabes jugar.<br><span>Pero no lees el juego.</span></h1>
+
+  <p class="hero-sub">4 sesiones con Marquis Johnson — ex Primera División — para que entiendas para dónde cortar, cuándo pasar y cómo moverte cuando no tienes el balón.</p>
+
+  <div class="hero-details">
+    <div class="tag">📅 <strong>Arranca 18 de mayo</strong></div>
+    <div class="tag">⏱ <strong>2 semanas</strong></div>
+    <div class="tag">💰 <strong>$60.000 el ciclo</strong></div>
+  </div>
+
+  <a href="https://wa.me/5698596285?text=Hola%2C%20quiero%20saber%20si%20quedan%20cupos%20en%20el%20Sprint%2014D" class="cta-primary" id="hero-cta" onclick="fbq('track','Lead')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Preguntar si quedan cupos
+  </a>
+
+  <p class="cta-note">Le escribes directo a Marquis. Te confirma en minutos.</p>
+</section>
+
+<!-- ====== WHAT + PRICE ====== -->
+<section class="what">
+  <h2>Qué incluye el Sprint 14D</h2>
+
+  <div class="what-grid">
+    <div class="what-item">
+      <div class="icon">👥</div>
+      <div class="label">Grupo</div>
+      <div class="value">Máx. 10 personas</div>
+    </div>
+    <div class="what-item">
+      <div class="icon">🎯</div>
+      <div class="label">Enfoque</div>
+      <div class="value">Lectura de juego y decisiones</div>
+    </div>
+    <div class="what-item">
+      <div class="icon">🏀</div>
+      <div class="label">Método</div>
+      <div class="value">5 abierto, cortes y pick & roll</div>
+    </div>
+    <div class="what-item">
+      <div class="icon">🔄</div>
+      <div class="label">Formato</div>
+      <div class="value">Ejercicios + 5 contra 5 real</div>
+    </div>
+  </div>
+
+  <div class="price-box">
+    <div class="price">$60.000 CLP</div>
+    <div class="price-note">Ciclo completo · 4 sesiones</div>
+  </div>
+
+  <div class="guarantee">
+    <div class="shield">🛡️</div>
+    <p><strong>Sin riesgo:</strong> Si la primera sesión no te convence, se devuelve el 100%. Sin preguntas.</p>
+  </div>
+
+  <a href="https://wa.me/5698596285?text=Hola%2C%20quiero%20saber%20si%20quedan%20cupos%20en%20el%20Sprint%2014D" class="cta-primary" onclick="fbq('track','Lead')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Reservar cupo por WhatsApp
+  </a>
+</section>
+
+<!-- ====== COACH + FINAL CTA ====== -->
+<section class="coach">
+  <h2>Tu entrenador</h2>
+
+  <div class="coach-card">
+    <div class="coach-name">Marquis <span>Johnson</span></div>
+    <div class="coach-tags">
+      <span>Ex jugador profesional</span>
+      <span>Primera División Chile</span>
+      <span>Puerto Montt</span>
+    </div>
+    <p class="coach-desc">Marquis jugó toda su carrera en Primera División. No es un entrenador de YouTube — vivió el pick & roll bajo presión, el spacing real, la lectura rápida de defensa. Eso es lo que entrena.</p>
+  </div>
+
+  <div class="final-cta">
+    <p class="urgency">Quedan cupos — arranca domingo 18 de mayo</p>
+    <a href="https://wa.me/5698596285?text=Hola%2C%20quiero%20saber%20si%20quedan%20cupos%20en%20el%20Sprint%2014D" class="cta-primary" onclick="fbq('track','Lead')">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Preguntar si quedan cupos
+    </a>
+    <p class="cta-note">Escríbele directo a Marquis por WhatsApp.</p>
+  </div>
+</section>
+
+<!-- ====== STICKY BAR ====== -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="https://wa.me/5698596285?text=Hola%2C%20quiero%20saber%20si%20quedan%20cupos%20en%20el%20Sprint%2014D" class="cta-primary" onclick="fbq('track','Lead')">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Reservar cupo · $60.000
+  </a>
+</div>
+
+<script>
+  const heroCta = document.getElementById('hero-cta');
+  const stickyBar = document.getElementById('stickyBar');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        stickyBar.classList.remove('visible');
+      } else {
+        stickyBar.classList.add('visible');
+      }
+    });
+  }, { threshold: 0 });
+  observer.observe(heroCta);
+</script>
+
+</body>
+</html>
